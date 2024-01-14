@@ -1,0 +1,98 @@
+<h2>Reactivos: Básicos</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+
+        <form autocomplete="off" [formGroup]="myForm2" (ngSubmit)="onSave()">
+
+            <!-- Campo de producto -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Producto</label>
+                <div class="col-sm-9">
+
+                    <input type="text" class="form-control" placeholder="Nombre del producto" formControlName="name">
+                    <!-- //TODO esta forma de validacion no es recomendada -->
+                    <!-- *ngIf="myForm2.controls['name'].getError('required') && myForm2.controls['name'].touched" -->
+                    <span *ngIf="isValidField('name')" class="form-text text-danger">
+                        <!-- Debe de ser de 3 letras -->
+                        {{ getFieldError('name') }}
+                    </span>
+                    <!-- <span *ngIf="myForm2.controls['name'].getError('minlength') && myForm2.controls['name'].touched"
+                        class="form-text text-danger">
+                        Este campo requiere mínimo 3 letras
+                    </span> -->
+                </div>
+            </div>
+
+            <!-- Campo de producto -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Precio</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" placeholder="Precio del producto" formControlName="price">
+                    <span *ngIf="isValidField('price')" class="form-text text-danger">
+                        El precio debe de ser 0 o mayor
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo de existencias -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Existencias</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" placeholder="Existencias del producto"
+                        formControlName="inStorage">
+
+                    <span *ngIf="isValidField('inStorage')" class="form-text text-danger">
+                        Las existencias deben de ser 0 o mayor
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary float-end">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col">
+
+        <span>Valid</span>
+        <pre>{{ myForm2.valid | json }}</pre>
+
+        <span>Pristine</span>
+        <pre>{{ myForm2.pristine | json }}</pre>
+
+        <span>Touched</span>
+        <pre>{{ myForm2.touched | json }}</pre>
+
+        <span>Value</span>
+        <pre>{{ myForm2.value | json }}</pre>
+
+        <span>Precio</span>
+        <pre>{{ myForm2.controls['price'].value | json }}</pre>
+
+        <span>Precio</span>
+        <pre>{{ myForm2.controls['price'].errors | json }}</pre>
+
+        <span>Producto</span>
+        <pre>{{ myForm2.controls['name'].value | json }}</pre>
+
+        <span>Producto</span>
+        <pre>{{ myForm2.controls['name'].errors | json }}</pre>
+    </div>
+</div>
